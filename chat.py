@@ -110,20 +110,23 @@ def formatRegion(region):
 
 #Function that returns a JSON object that is needed to view the summoner id.
 def requestSummonerData(summonerName, region):
+    api_key = os.environ['riot_api']
     sumname = summonerName
-    url = "https://" + region + ".api.riotgames.com/lol/summoner/v4/summoners/by-name/" + sumname + "?api_key=RGAPI-24e4035d-2010-489f-af46-3282770d7e7a"
+    url = "https://" + region + ".api.riotgames.com/lol/summoner/v4/summoners/by-name/" + sumname + "?api_key=" + api_key
     data = requests.get(url)
     return data.json()
 
 #Function that returns a JSON object that is needed to view the summoner rank.
 def requestSummonerRank(id, region):
-  url = "https://" + region + ".api.riotgames.com/lol/league/v4/entries/by-summoner/" + id + "?api_key=RGAPI-24e4035d-2010-489f-af46-3282770d7e7a"
+  api_key = os.environ['riot_api']
+  url = "https://" + region + ".api.riotgames.com/lol/league/v4/entries/by-summoner/" + id + "?api_key=" + api_key
   data = requests.get(url).json()
   return data
 
 #Function that returns a JSON object of the summoner masteries. 
 def requestChampionMastery(region, id):
-  url = "https://" + region + ".api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/" + id + "?api_key=RGAPI-24e4035d-2010-489f-af46-3282770d7e7a"
+  api_key = os.environ['riot_api']
+  url = "https://" + region + ".api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/" + id + "?api_key=" + api_key
   data = requests.get(url).json()
   return data
 
